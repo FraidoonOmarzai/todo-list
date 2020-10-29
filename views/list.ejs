@@ -1,0 +1,28 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+   <h1><%= listTitle %></h1>
+</div>
+
+<div class="box">
+
+   <% newListItems.forEach(item =>{ %>
+   <form action="/delete" method="post">
+      <div class="item">
+         <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()"> <!--we use this.form.submit to submit the input whenever user click on checkbox -->
+         <p><%= item.name %></p>
+      </div>
+      <!-- here we use second input with type of hidden for receving the custom list name -->
+      <input type="hidden" name="listName" value="<%=listTitle %>">
+   </form>
+
+   <% }) %>
+
+   <form class="item" action="/" method="post">
+      <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+      <button type="submit" name="list" value=<%= listTitle %>>+</button>
+   </form>
+
+</div>
+
+<%- include("footer") -%>
